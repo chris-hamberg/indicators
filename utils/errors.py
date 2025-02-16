@@ -1,0 +1,1 @@
+class LookbackException(Exception): pass
