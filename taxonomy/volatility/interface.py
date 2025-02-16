@@ -1,4 +1,5 @@
 from indicators.taxonomy.volatility.species.quarkspectrum import QuarkSpectrum
+from indicators.taxonomy.volatility.species.realized import RealizedVolatility
 from indicators.taxonomy.volatility.species.dimensions import Dimensions
 from indicators.taxonomy.volatility.species.coeffvar import Coeffvar
 from indicators.taxonomy.volatility.species.clusters import Clusters
@@ -27,6 +28,7 @@ class Volatility(CoreIndicators):
         self._coeffvar      = Coeffvar()
         self._dimensions    = Dimensions()
         self._quarkSpectrum = QuarkSpectrum()
+        self._realized      = RealizedVolatility()
 
 
     @Indicator.description(CoreIndicators._variance)
@@ -70,6 +72,11 @@ class Volatility(CoreIndicators):
     @Indicator.description(QuarkSpectrum)
     def quarkSpectrum(self, timeseries, n=13, dimension="Close"):
         return self._quarkSpectrum(timeseries, n, dimension)
+
+
+    @Indicator.description(RealizedVolatility)
+    def realized(self, timeseries, n=14, dimension="Close"):
+        return self._realized(timeseries, n, dimension)
 
 
     @Indicator.description(GARCH)
