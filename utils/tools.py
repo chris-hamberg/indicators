@@ -66,6 +66,6 @@ class Tools:
 
 
     def divide(self, dividend, divisor):
-        dimension = np.full_like(dividend, np.nan)
+        dimension = np.full_like(dividend, 0)
         theta = (divisor != 0) & (~np.isnan(divisor)) & (~np.isnan(dividend))
         return np.divide(dividend, divisor, where=theta, out=dimension)

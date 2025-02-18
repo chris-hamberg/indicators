@@ -82,6 +82,7 @@ class RelativeStrengthIndex(CoreIndicators):
             return np.full_like(muGain, 50)
         rs  = self._tools.divide(muGain, muLoss)
         rsi = 100 - (100 / (1 + rs))
+        rsi = np.where(np.isnan(rsi) | ~np.isfinite(rsi), 50, rsi)
         return rsi
 
 

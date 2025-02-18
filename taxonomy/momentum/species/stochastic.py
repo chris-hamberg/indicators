@@ -56,7 +56,7 @@ class Stochastic(CoreIndicators):
         # Enforce correct scaling.
         if adaptive or weight:  
             K, D = self._tools.rescale(K), self._tools.rescale(D)
-        
+
         return K, D
 
 
