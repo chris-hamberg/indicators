@@ -88,7 +88,9 @@ class CoreIndicators(Adaptive):
         rolling, _ = self._windows.rolling(dimension, n)
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=RuntimeWarning)
-            variance = np.nanvar(rolling, axis=1)
+            try: variance = np.nanvar(rolling, axis=1)
+            except np.exceptions.AxisError:
+                variance = np.zeros(dimension.shape[0])
         variance = self._tools.resize(dimension, variance)
         return variance
 
