@@ -1,6 +1,7 @@
 from indicators.taxonomy.volatility.species.quarkspectrum import QuarkSpectrum
 from indicators.taxonomy.volatility.species.realized import RealizedVolatility
 from indicators.taxonomy.volatility.species.dimensions import Dimensions
+from indicators.taxonomy.volatility.species.ptr import PercentTrueRange
 from indicators.taxonomy.volatility.species.coeffvar import Coeffvar
 from indicators.taxonomy.volatility.species.clusters import Clusters
 from indicators.taxonomy.volatility.species.chaikin import Chaikin
@@ -28,6 +29,7 @@ class Volatility(CoreIndicators):
         self._coeffvar      = Coeffvar()
         self._dimensions    = Dimensions()
         self._quarkSpectrum = QuarkSpectrum()
+        self._ptr           = PercentTrueRange()
         self._realized      = RealizedVolatility()
 
 
@@ -92,3 +94,8 @@ class Volatility(CoreIndicators):
     @Indicator.description(Clusters)
     def clusters(self, timeseries, k=2, dimension="Volume"):
         return self._clusters(timeseries, k, dimension)
+
+
+    @Indicator.description(PercentTrueRange)
+    def ptr(self, timeseries, n=14):
+        return self._ptr(timeseries, n)

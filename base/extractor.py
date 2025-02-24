@@ -20,7 +20,8 @@ class Extractor:
         if isinstance(timeseries, DataFrame):
             try: timeseries = timeseries[dimension].values
             except KeyError:
-                timeseries = timeseries[dimension.lower()].values
+                try: timeseries = timeseries[dimension.lower()].values
+                except KeyError: return timeseries
         
         elif isinstance(timeseries, Stock):
             timeseries = timeseries[dimension]
@@ -38,10 +39,12 @@ class Extractor:
     def extract_matrix(self, timeseries):
         
         if isinstance(timeseries, DataFrame):
-            dimension  = np.full(timeseries.shape[0], np.nan)
+            dimension = np.full(timeseries.shape[0], np.nan)
             try: timeseries = timeseries[Extractor._dimensions].to_numpy()
             except KeyError:
-                timeseries = timeseries[Extractor._ldimensions].to_numpy()
+                try: timeseries = timeseries[Extractor._ldimensions].to_numpy()
+                except KeyError: return timeseries
+
             timeseries = np.column_stack((dimension, timeseries))
         
         elif isinstance(timeseries, Stock):

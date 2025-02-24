@@ -43,7 +43,17 @@ class Trend(CoreIndicators):
     @Indicator.description(CoreIndicators._sma)
     def sma(self, timeseries, n=14, dimension="Close", adaptive=False):        
         return self._sma(timeseries, n, dimension, adaptive)       
-        
+
+
+    @Indicators.description(CoreIndicators._smm)
+    def smm(self, timeseries, n=14, dimension="Close"):
+        return self._smm(timeseries, n, dimension, adaptive)
+
+
+    @Indicator.description(Mode)
+    def mode(self, timeseries, n=14, dimension="Close"):
+        return self._mode(timeseries, n, dimension)             
+
 
     @Indicator.description(CoreIndicators._ema)
     def ema(self, timeseries, n=14, dimension="Close", adaptive=False):       
@@ -77,11 +87,6 @@ class Trend(CoreIndicators):
     @Indicator.description(KAMA)
     def kama(self, timeseries, n=10, dimension="Close", fast=2, slow=30):
         return self._kama(timeseries, n, dimension, fast, slow)
-
-
-    @Indicator.description(Mode)
-    def mode(self, timeseries, n=14, dimension="Close"):
-        return self._mode(timeseries, n, dimension)
 
 
     @Indicator.description(Slope)

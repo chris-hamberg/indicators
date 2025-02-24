@@ -208,6 +208,7 @@ class CoreIndicators(Adaptive):
         Returns:
         numpy.ndarray: An array containing the SMA values.
         """
+        if not timeseries.shape[0]: return timeseries
         dimension = self._extractor.extract_dimension(timeseries, dimension)
         if adaptive:
             matrix  = self._extractor.extract_matrix(timeseries)
@@ -234,6 +235,7 @@ class CoreIndicators(Adaptive):
         Returns:
         numpy.ndarray: An array containing the SMM values.
         """
+        if not timeseries.shape[0]: return timeseries
         dimension = self._extractor.extract_dimension(timeseries, dimension)
         smm = self._windows.rolling_function(dimension, n, np.nanmedian)
         return smm
@@ -260,6 +262,7 @@ class CoreIndicators(Adaptive):
         Returns:
         numpy.ndarray: An array containing the EMA values.
         """
+        if not timeseries.shape[0]: return timeseries
         dimension = self._extractor.extract_dimension(timeseries, dimension)
         if _temaX is not None: dimension = _temaX
         index     = np.argmax(~np.isnan(dimension))

@@ -40,7 +40,8 @@ class Tools:
     def nanmax_ignore_nan(self, array, axis=0):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=RuntimeWarning)
-            minima  = np.nanmin(array)
+            try: minima = np.nanmin(array)
+            except ValueError: return np.nan
             imputed = np.where(np.isnan(array), minima, array)
             maxima  = np.nanmax(imputed, axis=axis)
         return maxima
@@ -49,7 +50,8 @@ class Tools:
     def nanmin_ignore_nan(self, array, axis=0):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=RuntimeWarning)
-            maxima  = np.nanmax(array)
+            try: maxima = np.nanmax(array)
+            except ValueError: return np.nan
             imputed = np.where(np.isnan(array), maxima, array)
             minima  = np.nanmin(imputed, axis=axis)
         return minima

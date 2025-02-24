@@ -39,7 +39,9 @@ class Stochastic(CoreIndicators):
         if dmode not in CoreIndicators._modes: raise ValueError(self.derror)
 
         matrix = self._extractor.extract_matrix(timeseries)
-        high, low, close = matrix[:,2], matrix[:,3], matrix[:,4]
+        
+        try: high, low, close = matrix[:,2], matrix[:,3], matrix[:,4]
+        except KeyError: return np.array([]), np.array([])
         
         # Adaptive (or classic) Stochastic Oscillator
         if adaptive: highest, lowest = self.adapt(matrix, high, low, n)
