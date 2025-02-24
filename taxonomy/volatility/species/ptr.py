@@ -4,6 +4,19 @@ import numpy as np
 
 class PercentTrueRange(CoreIndicators):
     """
+    Percent True Range (PTR)
+
+    Computes the Percent True Range (PTR) indicator by measuring the percentage 
+    difference between the highest high and the lowest low over a specified 
+    number of periods. This indicator is useful for evaluating the relative 
+    volatility of a financial instrument.
+
+    Parameters:
+    - timeseries (pd.DataFrame or Stock): The input financial time series data.
+    - n (int): The periods over which to calculate the high and low extremes.
+
+    Returns:
+    numpy.ndarray: An array containing the computed Percent True Range values.
     """
     def __init__(self):
         super().__init__()
