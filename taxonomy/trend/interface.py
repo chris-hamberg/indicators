@@ -45,9 +45,9 @@ class Trend(CoreIndicators):
         return self._sma(timeseries, n, dimension, adaptive)       
 
 
-    @Indicators.description(CoreIndicators._smm)
+    @Indicator.description(CoreIndicators._smm)
     def smm(self, timeseries, n=14, dimension="Close"):
-        return self._smm(timeseries, n, dimension, adaptive)
+        return self._smm(timeseries, n, dimension)
 
 
     @Indicator.description(Mode)
